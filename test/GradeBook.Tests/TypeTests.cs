@@ -75,6 +75,21 @@ public class TypeTests
     }
 
     [Fact]
+    public void StringsBehaveLikeValueTypes()
+    {
+        // Strings are immutable
+        string name = "Check";
+        string newName = MakeUpperCase(name);
+        Assert.Equal("Check", name);
+        Assert.Equal("CHECK", newName);
+    }
+
+    private string MakeUpperCase(string parameter)
+    {
+        return parameter.ToUpper();
+    }
+
+    [Fact]
     public void GetBookReturnsDifferentObjects()
     {
         // Arrange
