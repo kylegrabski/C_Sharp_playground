@@ -3,7 +3,7 @@ using System.Collections.Generic;
 namespace GradeBook
 {
     // No access modifier given, defaults to 'internal'. Meaning it can ONLY be used within the same project.
-        public class Book
+    public class Book
     {
         // Constructor
         public Book(string name)
@@ -14,7 +14,14 @@ namespace GradeBook
 
         public void AddGrade(double grade)
         {
-            grades.Add(grade);
+            if (grade <= 100 && grade >= 0)
+            {
+                grades.Add(grade);
+            }
+            else
+            {
+                System.Console.WriteLine("Invalid Value");
+            }
         }
 
         public Statistics GetStatistics()
@@ -25,15 +32,28 @@ namespace GradeBook
             result.High = double.MinValue;
             result.Low = double.MaxValue;
 
-            foreach (var grade in grades)
+            // foreach (var grade in grades)
+            // {
+            //     result.Low = Math.Min(grade, result.Low);
+            //     result.High = Math.Max(grade, result.High);
+            //     result.Average += grade;
+            // }
+
+            for (int i = 0; i < grades.Count; i++)
             {
-                result.Low = Math.Min(grade, result.Low);
-                result.High = Math.Max(grade, result.High);
-                result.Average += grade;
+                result.Low = Math.Min(grades[i], result.Low);
+                result.High = Math.Max(grades[i], result.High);
+                result.Average += grades[i];
             }
+
             result.Average /= grades.Count;
 
             return result;
+        }
+
+        public List<double> GetGrades()
+        {
+            return grades;
         }
 
         // Field declaration
