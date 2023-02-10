@@ -22,6 +22,23 @@ public class BookTests
         Assert.Equal(85.6, result.Average, 1);
         Assert.Equal(90.5, result.High, 1);
         Assert.Equal(77.3, result.Low, 1);
-        
+
+    }
+
+    [Fact]
+    public void AddGradeBetweenZeroAndOneHundred()
+    {
+        // Arrange
+        var book = new Book("Kyle's Test Book");
+        book.AddGrade(99.0);
+
+        // Act
+        var result = book.GetGrades();
+
+        // Assert
+        foreach (var item in result)
+        {
+            Assert.Equal(99.0, item);
+        }
     }
 }
